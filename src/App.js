@@ -1,24 +1,25 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import colorArray from './colors';
+import List from './List';
 
 function App() {
+  // eslint-disable-next-line
+  const [color, setColor] = useState(colorArray);
+  const [showList, setShowList] = useState(false);
+  const handleButtonClick = () => {
+    setShowList(!showList);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <center>
+      <div id='container'>
+        {showList && <List colors={color}/>}
+      </div>
+        <p>Color Picker</p>
+      <h3 id="display"></h3>
+      <button onClick={handleButtonClick}>Pick a color</button>
+    </center>
   );
 }
 
